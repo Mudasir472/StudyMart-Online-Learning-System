@@ -1,0 +1,30 @@
+:root {
+    --primary-color: #F48C06;
+    /* Define your common color */
+}
+
+.pagelinks {
+    width: 30rem;
+}
+
+.navbar .pagelinks ul li {
+    width: 67px;
+    height: 33px;
+}
+
+.auth div {
+    background-color: white;
+    border-radius: 61px;
+    width: 91px;
+    height: 36px;
+}
+
+.auth .signup {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.auth .login {
+    color: #6C6C6C;
+    box-shadow: 0px 4px 4px #c7c7c7;
+}

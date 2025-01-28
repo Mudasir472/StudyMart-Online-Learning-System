@@ -1,0 +1,129 @@
+:root {
+    --sec-color: #FFF2E1;
+    --primary-color: #F48C06;
+    /* Define your common color */
+}
+
+.homeTop {
+    height: 37rem;
+    background-color: var(--sec-color);
+}
+
+.imgg-teen img {
+    height: 650px;
+}
+
+.topLeft {
+    height: 16rem;
+    width: 31%;
+}
+
+.topRight {
+    margin-right: 50px;
+}
+
+.topHead .spa1 {
+    color: var(--primary-color);
+}
+
+.topHead .spa2 {
+    color: #2F327D;
+}
+
+.topJoin button {
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 80px;
+    width: 126px;
+    height: 44px;
+}
+
+/* allinone */
+.allinone .oneMain {
+    height: 55rem;
+}
+
+.classroom .span2,
+.mid .span1 {
+    color: #2F327D;
+}
+
+.voilet {
+    color: #2F327D;
+}
+
+.orange {
+    color: #F48C06;
+}
+
+.classroom .span1,
+.mid .span2 {
+    color: #F48C06;
+}
+
+.allOneBtm {
+    box-shadow: 0 5px 27px #cdcdd3;
+    width: 30%;
+    height: 21rem;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.allOneBtm h2 {
+    font-size: 26px;
+    color: #2F327D;
+}
+
+.AllOneImggs {
+    position: absolute;
+    top: -51px;
+}
+
+/*  For Mart */
+.martImgs1 img {
+    height: 19rem;
+}
+
+.martImgs1 button {
+    height: 49px;
+    width: 158px;
+}
+
+.smartMain {
+    height: 65rem;
+}
+
+.instructBtn:hover {
+    background-color: #65DAFF;
+}
+
+.accessBtn {
+    background-color: #65DAFF;
+}
+
+.accessBtn:hover {
+    background: transparent;
+}
+
+.card-body {
+    padding: var(--padding-card, 1rem) !important;
+    gap: 1.1rem !important;
+    margin-top: -21px;
+}
+
+.courceMain .right {
+    background-color: #65DAFF;
+    color: white;
+}
+
+.card {
+    box-shadow: #64646f33 0 7px 29px;
+}
+
+/* Categories */
+.category {
+    box-shadow: #64646f33 0 7px 29px;
+}
+.recomended{
+    background-color: rgb(157 204 255 / 20%);
+}
