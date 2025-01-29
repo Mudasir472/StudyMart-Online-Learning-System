@@ -33,7 +33,7 @@ function Cource({ img, title, description, duration = '3 Months', instructor, in
                                 <span className="ms-3 font-medium	">{instructor}</span>
                             </div>
                             <div className="right h-[38px] w-[88px] flex items-center justify-center rounded-lg cursor-pointer">
-                                <span className="font-medium">{`$${price}`}</span>
+                                <span className="font-medium">{price}</span>
                             </div>
                         </div>
                     </div>
