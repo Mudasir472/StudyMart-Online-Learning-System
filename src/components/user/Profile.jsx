@@ -3,6 +3,8 @@ import { LoginContext } from "../../context/Context";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { URI } from "../../../env";
+
 
 const Profile = () => {
     const { loginData, setLoginData } = useContext(LoginContext);
@@ -21,7 +23,7 @@ const Profile = () => {
             formData.append('profilePic', file);
             setLoading(true);
             try {
-                const response = await axios.post(`http://localhost:5000/user/changeprofile`, formData, {
+                const response = await axios.post(`${URI}/user/changeprofile`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,

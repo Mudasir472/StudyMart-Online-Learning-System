@@ -13,6 +13,7 @@ defaults.plugins.title.color = "black";
 
 function Graph() {
     const { loginData, setLoginData } = useContext(LoginContext);
+    const [teacherId, setTeacherId] = useState(null);
     const [loading, setLoading] = useState(true);
     const [revenue, setRevenue] = useState(null);
     const [enrolls, setEnrolls] = useState(true);
@@ -20,14 +21,22 @@ function Graph() {
     const [monthlyData, setMonthlyData] = useState([]);
 
     useEffect(() => {
+        // if (!loginData?._id) return;
+        setTeacherId(loginData?._id);
         const fetchDonations = async () => {
             try {
-                const resp = await axios.get(`http://localhost:5000/monthly-payments/${loginData?._id}`);
+                const token = localStorage.getItem("token");
+                const resp = await axios.get(`http://localhost:5000/monthly-payments/${loginData?._id}`, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+
                 if (resp.data.success) {
                     setMonthlyData(resp.data.data);  // Update state with the data from the response
                     setRevenue(resp?.data?.totalEarnings)
                     setEnrolls(resp?.data?.totalEnrollments)
                 }
+                console.log(resp);
+
             } catch (error) {
                 console.log(error);
             } finally {
@@ -35,6 +44,7 @@ function Graph() {
             }
         };
         fetchDonations();
+
     }, []);
     console.log(monthlyData);
 
