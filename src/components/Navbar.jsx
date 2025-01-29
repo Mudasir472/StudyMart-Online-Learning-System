@@ -39,7 +39,7 @@ function Navbar() {
             <div className="flex-none gap-12">
                 <ul className="pagelinks menu menu-horizontal px-1 flex items-center justify-between">
                     <li><Link to={"/"}>Home</Link></li>
-                    <li><Link to={"/allcources"}>Cources</Link></li>
+                    <li><Link to={"/all-cources"}>Cources</Link></li>
                     <li><Link to={"/blog"}>Blog</Link></li>
                     <li><Link to={"/about"}>About</Link></li>
                     <li><Link to={"/contact"}>Contact</Link></li>

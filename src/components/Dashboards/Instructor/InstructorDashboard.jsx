@@ -29,7 +29,7 @@ function InstructorDashboard() {
             );
             setCurrCource(filteredCourses);
         }
-    }, [courses,loginData]);
+    }, [courses, loginData]);
 
     // Handle file changes for images and videos
     const handleImageChange = (e) => {
@@ -195,18 +195,23 @@ function InstructorDashboard() {
                                     </div>
                                 </div>
                                 <div>
-                                    <label htmlFor="category" className="block text-sm/6 font-medium text-gray-900">
+                                    <label htmlFor="category" className="block text-sm font-medium text-gray-900">
                                         Category
                                     </label>
                                     <div className="mt-2">
-                                        <input
-                                            className="textarea w-full textarea-bordered onfocus:border"
-                                            placeholder="Category"
+                                        <select
+                                            className="select w-full select-bordered"
                                             name="category"
                                             id="category"
                                             value={formData.category}
                                             onChange={handleInputChange}
-                                        />
+                                        >
+                                            <option value="" disabled>Select Category</option> {/* Default disabled option */}
+                                            <option value="Development">Development</option>
+                                            <option value="Design">Design</option>
+                                            <option value="CyberSecurity">CyberSecurity</option>
+                                            <option value="Blockchain">Blockchain</option>
+                                        </select>
                                     </div>
                                 </div>
 
