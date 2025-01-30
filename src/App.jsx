@@ -15,8 +15,7 @@ import ViewCourse from "./views/courceDetails/ViewCourse";
 import UpdateUser from "./components/user/UpdateUser";
 import MyCource from "./components/user/MyCource";
 import EachCource from "./views/pages/EachCource";
-import About from "./views/pages/Aboutus/About.jsx";
-// import About from "./views/pages/Aboutus/About";
+import About from "./views/pages/About";
 
 
 function App() {

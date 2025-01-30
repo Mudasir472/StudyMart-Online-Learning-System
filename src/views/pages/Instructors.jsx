@@ -1,4 +1,3 @@
-import img from "../../../assets/mern.webp"
 function Instructors({ instructor }) {
     return (<>
         <div className="instructors p-[19px] flex flex-col items-center">

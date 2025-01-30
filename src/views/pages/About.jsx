@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { URI } from "../../../../env.js"
+import { URI } from "../../../env.js"
 import about from "../../../assets/about.webp"
 import teacher from "../../../assets/teacher.svg"
-import Recomended from "../../Home/Recomended.jsx";
-import Instructors from "./Instructors.jsx"
+import Recomended from "../Home/Recomended.jsx";
 import axios from "axios";
+import Instructors from "./Instructors.jsx";
 function About() {
     const [allUsers, setAllUsers] = useState([])
     const [error, setError] = useState(null);
