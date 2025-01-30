@@ -36,7 +36,6 @@ function Recomended() {
                     </>) : (<>
                         {courses.slice(-4).map((course, index) => (
                             <Link className="w-[24%]" to={`/allcources/${course._id}`}>
-                                {console.log(course)}
                                 <Cource
                                     key={index}
                                     img={course?.images?.[0]?.url || ""}

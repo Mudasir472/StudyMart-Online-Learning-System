@@ -15,6 +15,7 @@ import ViewCourse from "./views/courceDetails/ViewCourse";
 import UpdateUser from "./components/user/UpdateUser";
 import MyCource from "./components/user/MyCource";
 import EachCource from "./views/pages/EachCource";
+import About from "./views/pages/Aboutus/About";
 
 
 function App() {
@@ -49,6 +50,8 @@ function AppWrapper() {
           <Route path="/my-cources" element={<MyCource />} />
 
           <Route path="/all-cources" element={<EachCource />} />
+          <Route path="/about-us" element={<About />} />
+
 
           <Route path="/dashboard/*" element={<ProtectedRoute element={DashLayout} />} />
           {/* <Route path="*" element={< />} /> */}

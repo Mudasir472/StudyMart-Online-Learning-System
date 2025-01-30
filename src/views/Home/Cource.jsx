@@ -8,7 +8,6 @@ function Cource({ img, title, description, duration = '3 Months', instructor, in
             setLogo(instructorLogo);
         }
     }, [instructorLogo]);
-    console.log(logo);
 
 
     return (<>
