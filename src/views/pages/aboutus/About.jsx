@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { URI } from "../../../../env.js"
 import about from "../../../assets/about.webp"
 import teacher from "../../../assets/teacher.svg"
-import Recomended from "../../Home/Recomended";
-import Instructors from "../aboutus/Instructors"
+import Recomended from "../../Home/Recomended.jsx";
+import Instructors from "./Instructors.jsx"
 import axios from "axios";
 function About() {
     const [allUsers, setAllUsers] = useState([])
