@@ -71,7 +71,7 @@ function EachCource() {
                                             instructor={course.instructorId?.fullname}
                                             instructorLogo={course?.instructorId?.image?.url}
                                             type={course.category}
-                                            price={course?.price}
+                                            price={course?.price === 0 ? 'Free' : `$${course?.price}`}
                                         />
                                     </Link>
                                 ))

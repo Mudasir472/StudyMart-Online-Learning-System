@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from "../../../context/Context";
+import Pie from "./Pie";
 
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
@@ -13,7 +14,6 @@ defaults.plugins.title.color = "black";
 
 function Graph() {
     const { loginData, setLoginData } = useContext(LoginContext);
-    const [teacherId, setTeacherId] = useState(null);
     const [loading, setLoading] = useState(true);
     const [revenue, setRevenue] = useState(null);
     const [enrolls, setEnrolls] = useState(true);
@@ -22,11 +22,10 @@ function Graph() {
 
     useEffect(() => {
         // if (!loginData?._id) return;
-        setTeacherId(loginData?._id);
         const fetchDonations = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const resp = await axios.get(`http://localhost:5000/monthly-payments/${loginData?._id}`, {
+                const resp = await axios.get(`http://localhost:5000/monthly-payments`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -46,7 +45,6 @@ function Graph() {
         fetchDonations();
 
     }, []);
-    console.log(monthlyData);
 
     return (
         <>
@@ -105,6 +103,9 @@ function Graph() {
                                         },
                                     }}
                                 />
+                            </div>
+                            <div>
+                                <Pie />
                             </div>
                         </>
                     )}

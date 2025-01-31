@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../../context/Context.jsx";
 import CourceUpdate from "./CourceUpdate.jsx";
 import Graph from "./Graph.jsx";
+import Pie from "./Pie.jsx";
 
 function DashLayout() {
     const { loginData, setLoginData } = useContext(LoginContext);
@@ -30,7 +31,7 @@ function DashLayout() {
                         <Routes>
                             <Route path="" element={<InstructorDashboard loader={false} />} />
                             <Route path="overview" element={<Graph />} />
-                            <Route path="enrolled" element={<InstructorDashboard />} />
+                            <Route path="enrolled" element={<Pie />} />
                             <Route path="cource-update/:courseId" element={<CourceUpdate />} />
 
                         </Routes>
