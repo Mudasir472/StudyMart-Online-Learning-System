@@ -49,7 +49,7 @@ function Headbar() {
             <div className="headbar  bg-[#212832]  h-[73px] fixed top-0 left-0 w-full z-10">
                 <div className="navbar bg-base-100 container mx-auto">
                     <div className="flex-1">
-                        <a className="btn text-white btn-ghost text-xl">daisyUI</a>
+                        <Link to={'/'} className="btn text-white btn-ghost text-xl">Study<span className="text-[#f48c06]">Mart</span></Link>
                     </div>
                     <div className="flex-none gap-2">
                         <div className="dropdown dropdown-end">

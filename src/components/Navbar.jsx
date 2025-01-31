@@ -3,6 +3,7 @@ import "./components.css"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { LoginContext } from "../context/Context.jsx"
+import logo from "/logo.png"
 function Navbar() {
 
     const [user, setUser] = useState(null);
@@ -34,7 +35,7 @@ function Navbar() {
     return (<>
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link to={'/'} className="btn btn-ghost text-xl">Study<span className="text-[#f48c06]">Mart</span></Link>
             </div>
             <div className="flex-none gap-12">
                 <ul className="pagelinks menu menu-horizontal px-1 flex items-center justify-between">
