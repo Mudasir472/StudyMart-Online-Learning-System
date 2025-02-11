@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
+import register from "../assets/register.svg"
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 

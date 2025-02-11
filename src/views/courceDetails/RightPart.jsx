@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { LoginContext } from "../../context/Context";
 import { CourseContext } from "../../context/CourseProvider";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function RightPart({ courseId }) {
     const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
@@ -17,7 +17,7 @@ function RightPart({ courseId }) {
         paymentMethod: "",
         amount: cource?.price
     });
-
+const navigate = useNavigate()
     const handleInputChange = (e) => {
         setFormData((currData) => ({
             ...currData,
@@ -74,6 +74,9 @@ function RightPart({ courseId }) {
         } catch (error) {
             console.log(error);
             toast.error(error.response?.data?.message || error.response?.data?.error || "Error");
+            if (error.response.status === 401) {
+                navigate('/login')
+            }
         }
         finally {
             setIsEnrolling(false);

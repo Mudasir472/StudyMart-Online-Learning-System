@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import axios from 'axios';
+import loginImg from "../assets/login.svg"
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { LoginContext } from "../context/Context.jsx"
+import { URI } from "../../env.js";
 export default function Login() {
     const { loginData, setLoginData } = useContext(LoginContext)
     const [user, setUser] = useState({})
@@ -23,7 +25,7 @@ export default function Login() {
         e.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:5000/login",
+                `${URI}/login`,
                 formData,
                 { withCredentials: true }
             );
@@ -41,81 +43,78 @@ export default function Login() {
 
     return (
         <>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img
-                        alt="Your Company"
-                        src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                        className="mx-auto h-10 w-auto"
-                    />
-                    <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-                        Log in to your account
-                    </h2>
-                </div>
+            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 container mx-auto">
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div>
-                            <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
-                                Email address
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    required
-                                    autoComplete="email"
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                    placeholder="Enter email"
-                                />
+                <div className="flex items-center justify-evenly gap-[6rem]">
+                    <div>
+                        <img className="h-[35rem]" src={loginImg} alt="" />
+                    </div>
+                    <div className="  sm:w-full sm:max-w-sm flex flex-col gap-[2rem]" >
+                        <div className="welcome">
+                            <p className="flex items-center justify-center mb-[12px]">Welcome <span className="ms-2 text-[#F48C06]">StudyMart</span></p>
+                            <div className="flex items-center bg-[#fff2e1] justify-center gap-[3rem] h-[56px] rounded-3xl">
+                                <div className="bg-[#F48C06] text-white h-[77%] w-[100px] rounded-3xl flex items-center justify-center">Login</div>
+                                <div className="">Register</div>
                             </div>
                         </div>
-
-                        <div>
-                            <div className="flex items-center justify-between">
-                                <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
-                                    Password
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                                    Email address
                                 </label>
-                                <div className="text-sm">
-                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                        Forgot password?
-                                    </a>
+                                <div className="mt-2">
+                                    <input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        required
+                                        autoComplete="email"
+                                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                        placeholder="Enter email"
+                                    />
                                 </div>
                             </div>
-                            <div className="mt-2">
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    value={formData.password}
-                                    onChange={handleInputChange}
-                                    required
-                                    autoComplete="current-password"
-                                    placeholder="password"
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                />
+
+                            <div>
+                                <div className="flex items-center justify-between">
+                                    <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                                        Password
+                                    </label>
+                                    <div className="text-sm">
+                                        <a href="#" className="font-semibold text-[#F48C06]">
+                                            Forgot password?
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="mt-2">
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        value={formData.password}
+                                        onChange={handleInputChange}
+                                        required
+                                        autoComplete="current-password"
+                                        placeholder="password"
+                                        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        <div>
-                            <button
-                                type="submit"
-                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Sign in
-                            </button>
-                        </div>
-                    </form>
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="w-[50%] rounded-2xl flex w-full justify-center rounded-md bg-[#F48C06] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-[#daa157] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                >
+                                    Log in
+                                </button>
+                            </div>
+                        </form>
 
-                    <p className="mt-10 text-center text-sm/6 text-gray-500">
-                        Not a member?{' '}
-                        <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                            Signup here
-                        </Link>
-                    </p>
+                        
+                    </div>
                 </div>
             </div>
         </>
