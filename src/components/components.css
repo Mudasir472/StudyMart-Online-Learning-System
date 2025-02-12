@@ -13,18 +13,13 @@
 }
 
 .auth div {
-    background-color: white;
     border-radius: 61px;
     width: 91px;
     height: 36px;
 }
 
-.auth .signup {
-    background-color: var(--primary-color);
-    color: white;
-}
+
 
 .auth .login {
-    color: #6C6C6C;
     box-shadow: 0px 4px 4px #c7c7c7;
 }

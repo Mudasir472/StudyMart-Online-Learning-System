@@ -42,7 +42,6 @@ function AppWrapper() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/userprofile" element={<Profile />} />

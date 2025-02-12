@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./components.css"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { LoginContext } from "../context/Context.jsx"
 import logo from "/logo.png"
 function Navbar() {
-
+    const location = useLocation();
     const [user, setUser] = useState(null);
     const { loginData, setLoginData } = useContext(LoginContext);
     const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ function Navbar() {
         }
         fetchUser();
     }, [setLoginData]);
-    
+
     return (<>
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -39,11 +39,11 @@ function Navbar() {
             </div>
             <div className="flex-none gap-12">
                 <ul className="pagelinks menu menu-horizontal px-1 flex items-center justify-between">
-                    <li><Link to={"/"}>Home</Link></li>
-                    <li><Link to={"/all-cources"}>Cources</Link></li>
-                    <li><Link to={"/blog"}>Blog</Link></li>
-                    <li><Link to={"/about-us"}>About</Link></li>
-                    <li><Link to={"/contact"}>Contact</Link></li>
+                    <li className={`${location.pathname === '/' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/"}>Home</Link></li>
+                    <li className={`${location.pathname === '/all-cources' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/all-cources"}>Cources</Link></li>
+                    <li className={`${location.pathname === '/blog' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/blog"}>Blog</Link></li>
+                    <li className={`${location.pathname === '/about-us' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/about-us"}>About</Link></li>
+                    <li className={`${location.pathname === '/contact' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/contact"}>Contact</Link></li>
                 </ul>
 
                 {
@@ -77,10 +77,14 @@ function Navbar() {
                             </ul>
                         </div>
                     </>) : (<>
-                        <ul className="auth  menu menu-horizontal flex px-1 flex items-center justify-between">
-                            <li className="flex items-center justify-center"><Link to={"/login"}><div className="login w-full h-full flex items-center justify-center">Login</div></Link></li>
-                            <li className="flex items-center justify-center"><Link to={"/signup"}><div className="signup w-full h-full flex items-center justify-center">Signup</div></Link></li>
-                        </ul>
+
+                        {
+                            location.pathname === '/login' ? (<></>) : (<>
+                                <ul className="auth  menu menu-horizontal flex px-1 flex items-center justify-between">
+                                    <li className="flex  items-center justify-center"><Link to={"/login"}><div className="login font-medium bg-[#f48c06] text-white w-full h-full flex items-center justify-center">Login</div></Link></li>
+                                </ul></>)
+                        }
+
                     </>)
                 }
             </div>
