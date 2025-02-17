@@ -19,7 +19,6 @@ const Pie = () => {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const courses = response?.data;
-                console.log(response?.data);
 
                 // Group courses by category to avoid duplicates
                 const categoryMap = courses.reduce((acc, course) => {

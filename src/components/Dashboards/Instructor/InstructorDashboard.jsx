@@ -21,7 +21,6 @@ function InstructorDashboard() {
         images: null,
     });
 
-    console.log(courses);
     // Update currCourses when courses change
     useEffect(() => {
         if (courses?.length > 0) {
@@ -78,13 +77,10 @@ function InstructorDashboard() {
             const newCourse = response?.data?.newCourse;
             setCourses((prev) => [newCourse, ...prev]); // Update courses
             // Update currCource directly
-            console.log(newCourse?.instructorId);
-            console.log(loginData?._id);
 
             if (newCourse?.instructorId === loginData?._id) {
                 setCurrCource((prev) => {
                     const updatedCource = [newCourse, ...(prev || [])];
-                    console.log("Updated currCource:", updatedCource); // Logs the updated value
                     return updatedCource;
                 });
             }

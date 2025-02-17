@@ -11,7 +11,6 @@ function CourceUpdate() {
     const [currCource, setCurrCource] = useState(null);
     const { courses, setCourses, error } = useContext(CourseContext);
     const [loading, setLoading] = useState(false);
-    console.log(currCource);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -145,7 +144,6 @@ function CourceUpdate() {
                 )
             );
             toast.success(response.data?.message);
-            console.log(formDataToSend);
         } catch (err) {
             console.log(err);
             toast.error(err.response?.data?.message || "An error occurred. Please try again.");
@@ -153,7 +151,6 @@ function CourceUpdate() {
             setLoading(false)
         }
     };
-    console.log(formData);
     return (<>
         <div className="courceupdate">
             <div className="updateMain">

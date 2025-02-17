@@ -35,7 +35,6 @@ function Graph() {
                     setRevenue(resp?.data?.totalEarnings)
                     setEnrolls(resp?.data?.totalEnrollments)
                 }
-                console.log(resp);
 
             } catch (error) {
                 console.log(error);
