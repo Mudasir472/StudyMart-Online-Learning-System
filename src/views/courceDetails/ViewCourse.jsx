@@ -14,7 +14,7 @@ function ViewCourse() {
         const fetchVideos = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:5000/api/courses/${courseId}/videos`, {
+                    `${URI}/api/courses/${courseId}/videos`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true,
                 });

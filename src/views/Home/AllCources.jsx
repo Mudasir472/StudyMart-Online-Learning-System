@@ -3,9 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CourseContext } from "../../context/CourseProvider";
 
-
-
-
 function AllCources() {
     // Get cource from the context
     const { courses, loading, error } = useContext(CourseContext);

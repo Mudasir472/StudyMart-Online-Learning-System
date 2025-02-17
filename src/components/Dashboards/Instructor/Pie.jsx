@@ -3,6 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import axios from "axios";
 import { LoginContext } from "../../../context/Context";
+import { URI } from "../../../../env";
 
 // Register required components
 Chart.register(ArcElement, Tooltip, Legend);
@@ -14,7 +15,7 @@ const Pie = () => {
         const fetchCourses = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get(`http://localhost:5000/courses`, {
+                const response = await axios.get(`${URI}/courses`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const courses = response?.data;

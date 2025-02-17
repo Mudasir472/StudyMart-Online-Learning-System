@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { CourseContext } from "../../../context/CourseProvider";
 import { LoginContext } from "../../../context/Context";
+import { URI } from "../../../../env";
 
 function InstructorDashboard() {
     const [addedCource, setAddedCource] = useState(null);
@@ -68,7 +69,7 @@ function InstructorDashboard() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/createcource",
+                `${URI}/createcource`,
                 formDataToSend, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,

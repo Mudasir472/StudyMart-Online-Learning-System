@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { LoginContext } from "../../context/Context";
 import { CourseContext } from "../../context/CourseProvider";
 import { Link, useNavigate } from 'react-router-dom'
+import { URI } from "../../../env";
 
 function RightPart({ courseId }) {
     const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
@@ -41,7 +42,7 @@ const navigate = useNavigate()
         if (isEnrolling) return; // Prevent duplicate calls
         setIsEnrolling(true);
         try {
-            const response = await axios.post("http://localhost:5000/api/enroll", { courseId, formData }, {
+            const response = await axios.post(`${URI}/api/enroll`, { courseId, formData }, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,
             });

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { URI } from "../../../env";
 
 const Chatbot = () => {
     const [message, setMessage] = useState(""); // Message input state
@@ -12,7 +13,7 @@ const Chatbot = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.post("http://localhost:5000/chat", { message }, {
+            const res = await axios.post(`${URI}/chat`, { message }, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,
             });

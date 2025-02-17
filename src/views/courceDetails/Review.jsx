@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ReviewBlock from "./ReviewBlock";
 import { CourseContext } from "../../context/CourseProvider";
+import { URI } from "../../../env";
 
 function Review({ id }) {
     const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
@@ -28,7 +29,7 @@ function Review({ id }) {
     const submitReview = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:5000/review/${id}`, reviewData, {
+            const res = await axios.post(`${URI}/review/${id}`, reviewData, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,
             });
@@ -71,7 +72,7 @@ function Review({ id }) {
     useEffect(() => {
         const fetchCourceData = async (id) => {
             try {
-                const response = await axios.get(`http://localhost:5000/getcourse`, { withCredentials: true });
+                const response = await axios.get(`${URI}/getcourse`, { withCredentials: true });
                 setCources(response.data?.Allcources)
 
 

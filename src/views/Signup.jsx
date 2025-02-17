@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import register from "../assets/register.svg"
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import { URI } from "../../env";
 
 export default function Signup() {
     const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ export default function Signup() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/signup",
+                `${URI}/signup`,
                 formData
             );
             toast.success(response.data.message || "Signup successful! You can now log in.")

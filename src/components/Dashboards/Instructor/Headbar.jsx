@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../../context/Context';
+import { URI } from '../../../../env';
 
 function Headbar() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Headbar() {
 
         const fetchUser = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/validUser", {
+                const res = await axios.get(`${URI}/validUser`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true,
                 });

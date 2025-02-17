@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../context/Context";
+import { URI } from "../../../env";
 
 function UpdateUser() {
     const { loginData, setLoginData } = useContext(LoginContext);
@@ -49,7 +50,7 @@ function UpdateUser() {
         const token = localStorage.getItem('token');
         try {
             const response = await axios.post(
-                "http://localhost:5000/edituser",
+                `${URI}/edituser`,
                 formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,

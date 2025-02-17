@@ -50,7 +50,7 @@ export default function Login() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/signup",
+                `${URI}/signup`,
                 formData
             );
             toast.success(response.data.message || "Signup successful! You can now log in.")
@@ -94,7 +94,7 @@ export default function Login() {
                             <p className="flex items-center justify-center mb-[12px]">Welcome <span className="ms-2 text-[#F48C06]">StudyMart</span></p>
                             <div className="flex items-center bg-[#fff2e1] justify-center gap-[3rem] h-[56px] rounded-3xl">
                                 <div className={` h-[77%] w-[100px] rounded-3xl flex items-center justify-center cursor-pointer ${login ? 'bg-[#F48C06] text-white' : ''}`} onClick={() => { setLogin(true) }}>Login</div>
-                                <div className={`h-[77%] w-[100px] rounded-3xl flex items-center justify-center cursor-pointer ${!login ? 'bg-[#F48C06] text-white' : ''}`} onClick={()=>{setLogin(false)}}>Register</div>
+                                <div className={`h-[77%] w-[100px] rounded-3xl flex items-center justify-center cursor-pointer ${!login ? 'bg-[#F48C06] text-white' : ''}`} onClick={() => { setLogin(false) }}>Register</div>
                             </div>
                         </div>
                         {
@@ -171,7 +171,7 @@ export default function Login() {
                                                 required
                                                 autoComplete="fullname"
                                                 placeholder="Enter First Name"
-                                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
                                             />
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@ export default function Login() {
                                                 onChange={handleInputChange}
                                                 required
                                                 autoComplete="email"
-                                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
                                                 placeholder="Enter email"
                                             />
                                         </div>
@@ -206,13 +206,13 @@ export default function Login() {
                                                 onChange={handleInputChange}
                                                 required
                                                 autoComplete="number"
-                                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
                                                 placeholder="Enter Contact"
                                             />
                                         </div>
                                     </div>
                                     <select
-                                            className="select select-bordered w-full max-w-xs focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] "
+                                        className="select select-bordered w-full max-w-xs focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] "
                                         name="role"
                                         value={formData.role}
                                         onChange={handleInputChange}
@@ -240,7 +240,7 @@ export default function Login() {
                                                 required
                                                 autoComplete="current-password"
                                                 placeholder="password"
-                                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
                                             />
                                         </div>
                                     </div>
@@ -258,7 +258,7 @@ export default function Login() {
                                                 required
                                                 autoComplete="current-password"
                                                 placeholder="confirm Password"
-                                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
+                                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#F48C06] sm:text-sm/6"
                                             />
                                         </div>
                                     </div>
@@ -266,7 +266,7 @@ export default function Login() {
                                     <div>
                                         <button
                                             type="submit"
-                                                className="flex w-full justify-center rounded-md bg-[#F48C06] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F48C06]"
+                                            className="flex w-full justify-center rounded-md bg-[#F48C06] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F48C06]"
                                         >
                                             Sign in
                                         </button>

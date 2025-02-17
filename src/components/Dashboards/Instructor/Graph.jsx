@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from "../../../context/Context";
 import Pie from "./Pie";
+import { URI } from "../../../../env";
 
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
@@ -25,7 +26,7 @@ function Graph() {
         const fetchDonations = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const resp = await axios.get(`http://localhost:5000/monthly-payments`, {
+                const resp = await axios.get(`${URI}/monthly-payments`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

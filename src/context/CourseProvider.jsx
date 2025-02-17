@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { URI } from "../../env";
 
 // Context creation
 export const CourseContext = createContext(null);
@@ -15,7 +16,7 @@ const CourseProvider = ({ children }) => {
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/getcourse", {
+                const response = await axios.get(`${URI}/getcourse`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true,
                 });

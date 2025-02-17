@@ -3,7 +3,9 @@ import "./components.css"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { LoginContext } from "../context/Context.jsx"
+import toast from "react-hot-toast";
 import logo from "/logo.png"
+import { URI } from "../../env.js";
 function Navbar() {
     const location = useLocation();
     const [user, setUser] = useState(null);
@@ -15,7 +17,7 @@ function Navbar() {
         const token = localStorage.getItem("token");
         const fetchUser = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/validUser", {
+                const res = await axios.get(`${URI}/validUser`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true,
                 });
@@ -23,7 +25,9 @@ function Navbar() {
                 setIsLoggedIn(!!userFromLocalStorage);
                 setLoginData(res?.data?.validuser)
             } catch (error) {
-                toast.error(error.response?.data?.error || "something wents wrong");
+                // toast.error(error.response?.data?.error || "something wents wrong");
+                console.log(error.message);
+                
             }
             finally {
                 setLoading(false)

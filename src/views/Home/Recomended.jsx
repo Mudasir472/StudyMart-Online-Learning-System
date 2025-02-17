@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 
 import { Link } from "react-router-dom";
+import { URI } from "../../../env";
 function Recomended() {
 
     const [courses, setCourses] = useState([]);
@@ -11,7 +12,7 @@ function Recomended() {
     const [error, setError] = useState(false)
     const getCourse = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/getcourse", { withCredentials: true });
+            const res = await axios.get(`${URI}/getcourse`, { withCredentials: true });
             setCourses(res.data?.Allcources || []); // Fallback to an empty array if no data
             setLoader(false);
         } catch (error) {

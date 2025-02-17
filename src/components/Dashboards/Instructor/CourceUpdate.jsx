@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { CourseContext } from "../../../context/CourseProvider";
 import { useParams } from "react-router-dom";
+import { URI } from "../../../../env";
 
 function CourceUpdate() {
     const { courseId } = useParams();
@@ -84,7 +85,7 @@ function CourceUpdate() {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.delete(
-                `http://localhost:5000/removeImage/${courseId}/${imageId}`,
+                `${URI}/removeImage/${courseId}/${imageId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -132,7 +133,7 @@ function CourceUpdate() {
 
         try {
             const response = await axios.put(
-                `http://localhost:5000/updateCource/${courseId}`,
+                `${URI}/updateCource/${courseId}`,
                 formDataToSend, {
                 headers: { Authorization: `Bearer ${token}` },
                 withCredentials: true,

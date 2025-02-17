@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../context/Context";
+import { URI } from "../../env";
 
 const Logout = () => {
     const navigate = useNavigate();
@@ -11,9 +12,8 @@ const Logout = () => {
     useEffect(() => {
         const logoutUser = async () => {
             const token = localStorage.getItem("token");
-
             try {
-                await axios.get("http://localhost:5000/logout", {
+                await axios.get(`${URI}/logout`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true,
                 });
