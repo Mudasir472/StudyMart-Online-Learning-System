@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { URI } from "../../../env";
 
 function ViewCourse() {
     const [videos, setVideos] = useState([]);
