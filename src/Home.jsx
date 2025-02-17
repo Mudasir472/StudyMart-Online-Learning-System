@@ -21,7 +21,7 @@ function Home() {
                     <Categories />
                     <Features />
                     <Tools />
-                    <Quiz/>
+                    <Quiz />
                 </div>
             </div>
         </div>

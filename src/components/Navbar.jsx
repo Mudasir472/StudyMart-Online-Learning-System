@@ -49,48 +49,54 @@ function Navbar() {
                     <li className={`${location.pathname === '/about-us' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/about-us"}>About</Link></li>
                     <li className={`${location.pathname === '/contact' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/contact"}>Contact</Link></li>
                 </ul>
-
-                {
-                    loading ? (<><span className="loading loading-dots loading-lg"></span></>) : (<>{null}</>)
-                }
-                {
-                    loginData ? (<>
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div >
-
+                {loading ? (
+                    <span className="loading loading-dots loading-lg"></span>
+                ) : (
+                    <>
+                        {loginData ? (
+                            <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="avatar">
-                                        <div className=" rounded-full ">
-                                            <img className="h-[59px] me-5" src={loginData?.image?.url} alt="" />
-
+                                        <div className="rounded-full">
+                                            <img
+                                                className="h-[59px] me-5"
+                                                src={loginData?.image?.url || '/default-avatar.png'}
+                                                alt="User Avatar"
+                                            />
                                         </div>
                                     </div>
-
                                 </div>
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                                >
+                                    <li>
+                                        <Link to="/userprofile" className="justify-between">
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/logout">Logout</Link>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul
-                                tabIndex={0}
-                                className="menu bg-white text-black menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                <li>
-                                    <Link to={"/userprofile"} className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
-                                    </Link>
-                                </li>
-                                <li><Link to={"/logout"}>Logout</Link></li>
-                            </ul>
-                        </div>
-                    </>) : (<>
+                        ) : (
+                            location.pathname !== '/login' && (
+                                <ul className="auth menu menu-horizontal flex items-center px-1">
+                                    <li>
+                                        <Link to="/login">
+                                            <div className="login font-medium bg-[#f48c06] text-white flex items-center justify-center">
+                                                Login
+                                            </div>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )
+                        )}
+                    </>
+                )}
 
-                        {
-                            location.pathname === '/login' ? (<></>) : (<>
-                                <ul className="auth  menu menu-horizontal flex px-1 flex items-center justify-between">
-                                    <li className="flex  items-center justify-center"><Link to={"/login"}><div className="login font-medium bg-[#f48c06] text-white w-full h-full flex items-center justify-center">Login</div></Link></li>
-                                </ul></>)
-                        }
-
-                    </>)
-                }
             </div>
         </div>
     </>);
