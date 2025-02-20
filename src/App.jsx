@@ -17,7 +17,7 @@ import MyCource from "./components/user/MyCource";
 import EachCource from "./views/pages/EachCource";
 import About from "./views/pages/About";
 import Blog from "./views/pages/Blog";
-import ContactPage from "./views/pages/ContactPage";
+// import ContactPage from "./views/pages/ContactPage";
 
 
 function App() {
@@ -53,7 +53,7 @@ function AppWrapper() {
           <Route path="/all-cources" element={<EachCource />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<ContactPage />} />
+          {/* <Route path="/contact" element={<ContactPage />} /> */}
 
 
           <Route path="/dashboard/*" element={<ProtectedRoute element={DashLayout} />} />
