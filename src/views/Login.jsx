@@ -23,7 +23,6 @@ export default function Login() {
         role: "",
     });
 
-    console.log(location.pathname);
 
     const navigate = useNavigate();
     const handleInputChangeLogin = (e) => {
@@ -54,7 +53,11 @@ export default function Login() {
                 formData
             );
             toast.success(response.data.message || "Signup successful! You can now log in.")
-            localStorage.setItem('user', JSON.stringify(response.data))
+            console.log(response.data);
+
+            setLoginData(response.data?.result?.user)
+            localStorage.setItem('token', JSON.stringify(response.data?.result?.token))
+            localStorage.setItem('user', JSON.stringify(response.data?.result?.user))
             navigate('/');
         } catch (err) {
             console.error("Signup error:", err);

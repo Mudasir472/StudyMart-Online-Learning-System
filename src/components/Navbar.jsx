@@ -47,7 +47,7 @@ function Navbar() {
                     <li className={`${location.pathname === '/all-cources' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/all-cources"}>Cources</Link></li>
                     <li className={`${location.pathname === '/blog' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/blog"}>Blog</Link></li>
                     <li className={`${location.pathname === '/about-us' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/about-us"}>About</Link></li>
-                    <li className={`${location.pathname === '/contact' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/contact"}>Contact</Link></li>
+                    {/* <li className={`${location.pathname === '/contact' ? 'border-b-[3px] border-[#f48c06]' : ''}`}><Link to={"/contact"}>Contact</Link></li> */}
                 </ul>
                 {loading ? (
                     <span className="loading loading-dots loading-lg"></span>
