@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "http://localhost:5000/auth",
+    baseURL: "https://study-mart-backend.vercel.app/auth",
     // withCredentials: true,
 });
 
-export const googleAuth = (code) => api.get(`http://localhost:5000/auth/google?code=${code}`);
+export const googleAuth = (code) => api.get(`https://study-mart-backend.vercel.app/auth/google?code=${code}`);
