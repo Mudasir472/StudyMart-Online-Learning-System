@@ -17,6 +17,7 @@ import MyCource from "./components/user/MyCource";
 import EachCource from "./views/pages/EachCource";
 import About from "./views/pages/About";
 import Blog from "./views/pages/Blog";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 // import ContactPage from "./views/pages/ContactPage";
 
 
@@ -31,6 +32,11 @@ function App() {
 function AppWrapper() {
   const location = useLocation();
   const isDashboardRoute = location.pathname.startsWith('/dashboard');
+  const GoogleWrapper = () => (
+    <GoogleOAuthProvider clientId="219611482733-e0svucrtr3tgs9ka7ct8k2mittsjuj0v.apps.googleusercontent.com">
+      <Login />
+    </GoogleOAuthProvider>
+  )
   return (
     <>
       <div className="app-container">
@@ -42,7 +48,7 @@ function AppWrapper() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<GoogleWrapper />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/userprofile" element={<Profile />} />
           <Route path="/allcources/:id" element={<CourceDetails />} />

@@ -77,7 +77,7 @@ function CourceUpdate() {
             toast.success(response.data.message || "Video removed successfully.");
         } catch (error) {
             console.error(error);
-            toast.error(error.response?.data?.error || "Failed to remove video.");
+            toast.error(error.response?.data?.message || "Failed to remove video.");
         }
     };
     const handleRemoveImage = async (imageId) => {

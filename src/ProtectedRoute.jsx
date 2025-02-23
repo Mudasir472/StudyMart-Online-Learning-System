@@ -13,11 +13,12 @@ export default function ProtectedRoute({ element: Component, ...rest }) {
         } else if (user?.role === "Student") {
             toast.error("Students cannot access the dashboard");
         }
-    }, [isAuthenticated,user]);
+    }, [isAuthenticated, user]);
 
-    return isAuthenticated && user?.role !== "Student" ? (
+    return isAuthenticated && user?.role === "Teacher" ? (
         <Component {...rest} />
     ) : (
         <Navigate to="/login" replace />
+
     );
 }

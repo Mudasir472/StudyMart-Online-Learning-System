@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import axios from 'axios';
+import { useGoogleLogin } from "@react-oauth/google";
+import { googleAuth } from "../api.js"
 import loginImg from "../assets/login.svg"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -84,6 +86,31 @@ export default function Login() {
         }
     };
 
+    // For googleLogin
+    const responseGoogle = async (authResult) => {
+        try {
+            if (authResult["code"]) {
+                const result = await googleAuth(authResult.code);
+
+                const { email, name, image } = result.data.user;
+                const token = result.data.token;
+                const obj = { email, name, token };
+                localStorage.setItem('user', JSON.stringify(obj));
+                localStorage.setItem('token', JSON.stringify(obj?.token));
+                navigate('/user/dashboard');
+            } else {
+                throw new Error(authResult);
+            }
+        } catch (e) {
+            console.log('Error while Google Login...', e);
+        }
+    };
+    const googleLogin = useGoogleLogin({
+        onSuccess: responseGoogle,
+        onError: responseGoogle,
+        flow: "auth-code",
+    });
+
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 container mx-auto">
@@ -102,7 +129,7 @@ export default function Login() {
                         </div>
                         {
                             login ? (<>
-                                <form onSubmit={handleSubmitLogin} className="space-y-6 h-[30rem]">
+                                <form onSubmit={handleSubmitLogin} className="space-y-6 ">
                                     <div>
                                         <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
                                             Email address
@@ -278,7 +305,11 @@ export default function Login() {
                             </>)
                         }
 
-
+                        <div className="googleLogin">
+                            <div className='flex items-center justify-center'>
+                                <p  onClick={googleLogin} className='border-2 rounded-xl p-[14px] cursor-pointer'><span className='me-2'><i class="bi bi-google text-[#4285F4] text-xl"></i></span>Login with Google</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
