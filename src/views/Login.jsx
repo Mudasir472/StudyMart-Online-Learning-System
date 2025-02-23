@@ -91,13 +91,14 @@ export default function Login() {
         try {
             if (authResult["code"]) {
                 const result = await googleAuth(authResult.code);
-
-                const { email, name, image } = result.data.user;
+                const { email, fullname, image } = result?.data?.user;
                 const token = result.data.token;
-                const obj = { email, name, token };
+                const obj = { email, fullname };
+                setLoginData(result?.data?.user);
                 localStorage.setItem('user', JSON.stringify(obj));
-                localStorage.setItem('token', JSON.stringify(obj?.token));
-                navigate('/user/dashboard');
+                localStorage.setItem('token', JSON.stringify(token));
+                toast.success("Login Success");
+                navigate('/userprofile');
             } else {
                 throw new Error(authResult);
             }
@@ -110,6 +111,8 @@ export default function Login() {
         onError: responseGoogle,
         flow: "auth-code",
     });
+
+    console.log(loginData);
 
     return (
         <>
@@ -307,7 +310,7 @@ export default function Login() {
 
                         <div className="googleLogin">
                             <div className='flex items-center justify-center'>
-                                <p  onClick={googleLogin} className='border-2 rounded-xl p-[14px] cursor-pointer'><span className='me-2'><i class="bi bi-google text-[#4285F4] text-xl"></i></span>Login with Google</p>
+                                <p onClick={googleLogin} className='border-2 rounded-xl p-[14px] cursor-pointer'><span className='me-2'><i class="bi bi-google text-[#4285F4] text-xl"></i></span>Login with Google</p>
                             </div>
                         </div>
                     </div>
