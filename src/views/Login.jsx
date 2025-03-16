@@ -48,7 +48,6 @@ export default function Login() {
             toast.error("Passwords do not match!")
             return;
         }
-
         try {
             const response = await axios.post(
                 `${URI}/signup`,

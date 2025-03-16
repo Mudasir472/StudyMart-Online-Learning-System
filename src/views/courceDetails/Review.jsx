@@ -51,7 +51,9 @@ function Review({ id }) {
             setIsModalOpen(false);
             navigate(`/allcources/${id}`);
         } catch (error) {
-            toast.error(error?.response?.data?.error)
+            toast.error(error?.response?.data?.message)
+            console.log(error);
+
             setIsModalOpen(false)
         }
     };
