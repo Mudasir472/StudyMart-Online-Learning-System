@@ -18,6 +18,7 @@ import EachCource from "./views/pages/EachCource";
 import About from "./views/pages/About";
 import Blog from "./views/pages/Blog";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import AdminRoute from "./AdminRoute";
 // import ContactPage from "./views/pages/ContactPage";
 
 
@@ -50,11 +51,13 @@ function AppWrapper() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<GoogleWrapper />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/userprofile" element={<Profile />} />
+
+          <Route path="/userprofile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/updateuser" element={<ProtectedRoute><UpdateUser /></ProtectedRoute>} />
+          <Route path="/view-cource/:courseId" element={<ProtectedRoute><ViewCourse /></ProtectedRoute>} />
+          <Route path="/my-cources" element={<ProtectedRoute><MyCource /></ProtectedRoute>} />
+
           <Route path="/allcources/:id" element={<CourceDetails />} />
-          <Route path="/updateuser" element={<UpdateUser />} />
-          <Route path="/view-cource/:courseId" element={<ViewCourse />} />
-          <Route path="/my-cources" element={<MyCource />} />
 
           <Route path="/all-cources" element={<EachCource />} />
           <Route path="/about-us" element={<About />} />
@@ -62,7 +65,10 @@ function AppWrapper() {
           {/* <Route path="/contact" element={<ContactPage />} /> */}
 
 
-          <Route path="/dashboard/*" element={<ProtectedRoute element={DashLayout} />} />
+          <Route path="/dashboard/*" element={
+            < AdminRoute >
+              <DashLayout />
+            </AdminRoute>} />
           {/* <Route path="*" element={< />} /> */}
         </Routes>
         <div style={{ backgroundColor: '#252641', color: 'white' }} className="foot">

@@ -11,6 +11,7 @@ export default function Login() {
     const [login, setLogin] = useState(true);
     const { loginData, setLoginData } = useContext(LoginContext)
     const [user, setUser] = useState({});
+    const location = useLocation();
     const [formData, setFormData] = useState({
         fullname: "",
         number: "",
@@ -78,7 +79,12 @@ export default function Login() {
             setUser(response.data?.result?.existingUser?.role)
             localStorage.setItem('token', JSON.stringify(response.data?.result?.token))
             localStorage.setItem('user', JSON.stringify(response.data?.result?.existingUser))
-            response.data?.result?.existingUser?.role === 'Teacher' ? navigate("/dashboard") : navigate("/")
+            // Get previous route from location.state
+            const from = location.state?.from?.pathname;
+
+            // Navigate to previous route if available, otherwise navigate based on role
+            navigate(from || (user?.role === "Teacher" ? "/dashboard" : "/"), { replace: true });
+            // response.data?.result?.existingUser?.role === 'Teacher' ? navigate("/dashboard") : navigate("/")
         } catch (err) {
             toast.error(err.response?.data?.error || "An error occurred. Please try again.")
 
