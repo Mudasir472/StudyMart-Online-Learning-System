@@ -12,7 +12,6 @@ export default function AdminRoute({ children }) {
     }
 
     if (user?.role !== "Admin") {
-        
         toast.error("Access Denied: Admins Only");
         return <Navigate to="/" replace />;
     }
