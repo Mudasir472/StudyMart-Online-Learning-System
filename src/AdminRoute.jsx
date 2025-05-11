@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 export default function AdminRoute({ children }) {
     const isAuthenticated = localStorage.getItem("user");
     const user = isAuthenticated ? JSON.parse(localStorage.getItem("user")) : null;
+    console.log(user);
+    
     const location = useLocation();
 
     if (!isAuthenticated) {
@@ -11,7 +13,7 @@ export default function AdminRoute({ children }) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    if (user?.role !== "Admin") {
+    if (user?.role !== "Teacher") {
         toast.error("Access Denied: Admins Only");
         return <Navigate to="/" replace />;
     }
