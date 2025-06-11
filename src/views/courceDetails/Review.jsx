@@ -51,8 +51,12 @@ function Review({ id }) {
             setIsModalOpen(false);
             navigate(`/allcources/${id}`);
         } catch (error) {
-            toast.error(error?.response?.data?.message)
-            console.log(error);
+            if (error?.response?.status === 401) {
+                toast.error(error?.response?.data?.message || "Please Login First")
+                navigate('/login')
+                return
+            }
+            toast.error(error?.response?.data?.message || "Please Login First")
 
             setIsModalOpen(false)
         }
