@@ -62,7 +62,7 @@ function CourceUpdate() {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.delete(
-                `http://localhost:5000/removeVideo/${courseId}/${videoId}`,
+                `${URI}/removeVideo/${courseId}/${videoId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
