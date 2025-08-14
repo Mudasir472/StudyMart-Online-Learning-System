@@ -1,9 +1,9 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { URI } from "../../env";
 export const deleteCourse = async (courceId, token, setCourses, setIsModalOpen) => {
     try {
-        const resp = await axios.delete(`http://localhost:5000/api/deleteCource/${courceId}`, {
+        const resp = await axios.delete(`${URI}/api/deleteCource/${courceId}`, {
             headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
         });
