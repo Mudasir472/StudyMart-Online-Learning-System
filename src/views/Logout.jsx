@@ -10,33 +10,35 @@ const Logout = () => {
     const { setLoginData } = useContext(LoginContext);
 
     useEffect(() => {
-        const logoutUser = async () => {
+        const handleLogout = async () => {
             const token = localStorage.getItem("token");
             try {
                 await axios.get(`${URI}/logout`, {
                     headers: { Authorization: `Bearer ${token}` },
                     withCredentials: true,
                 });
-                // Clear token from local storage
+
+                // Remove token & user data
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
-                // Clear login data in context to reflect logout
+
+                // Reset context state
                 setLoginData(null);
+
                 toast.success("Logout Successfully");
                 navigate("/login");
             } catch (error) {
-                toast.error(error.response.data.error);
-                // console.error("Error during logout:");
-
+                toast.error(error.response?.data?.error || "Logout failed");
                 navigate("/login");
             }
         };
-        logoutUser();
-    }, [navigate, setLoginData]);
+
+        handleLogout();
+    }, [navigate, setLoginData]); // ✅ useEffect will call logout only once
 
     return (
-        <div>
-            <h2>Logging out...</h2>
+        <div className="flex justify-center items-center h-screen">
+            <h2 className="text-xl font-semibold">Logging out...</h2>
         </div>
     );
 };
