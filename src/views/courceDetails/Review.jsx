@@ -99,6 +99,7 @@ function Review({ id }) {
         const cource = cources.find((item) => item._id === id);
         if (cource) {
             // setListingOwner(listing?.owner);
+            console.log("CR",cource.reviews);
             setReviews(cource.reviews || []);
         }
 
