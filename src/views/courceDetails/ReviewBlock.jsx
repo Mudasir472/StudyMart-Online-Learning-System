@@ -30,9 +30,7 @@ function ReviewBlock({ review, index }) {
                             />
                         </div>
                         <div className="name">
-                            <p>{review?.author?.firstname}</p>
-                            {console.log(review.author?.fullname)}
-                            {console.log(review.author)}
+                            <p>{review?.author?.fullname}</p>
                             <p className="starability-result" data-rating={review?.rating}></p>
                         </div>
                     </div>
