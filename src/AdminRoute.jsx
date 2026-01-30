@@ -4,8 +4,6 @@ import toast from "react-hot-toast";
 export default function AdminRoute({ children }) {
     const isAuthenticated = localStorage.getItem("user");
     const user = isAuthenticated ? JSON.parse(localStorage.getItem("user")) : null;
-    console.log(user);
-    
     const location = useLocation();
 
     if (!isAuthenticated) {

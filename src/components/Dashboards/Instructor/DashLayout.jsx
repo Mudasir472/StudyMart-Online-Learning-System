@@ -8,6 +8,7 @@ import { LoginContext } from "../../../context/Context.jsx";
 import CourceUpdate from "./CourceUpdate.jsx";
 import Graph from "./Graph.jsx";
 import Pie from "./Pie.jsx";
+import TeacherStudyMaterialUpload from "./TeacherStudyMaterialUpload.jsx";
 
 function DashLayout() {
     const { loginData, setLoginData } = useContext(LoginContext);
@@ -19,7 +20,6 @@ function DashLayout() {
             setLoginData(storedUser);
         }
     }, [setLoginData]);
-
 
     return (<>
         <div className="dashlayout">
@@ -33,6 +33,7 @@ function DashLayout() {
                             <Route path="overview" element={<Graph />} />
                             <Route path="enrolled" element={<Pie />} />
                             <Route path="cource-update/:courseId" element={<CourceUpdate />} />
+                            <Route path="study-material" element={<TeacherStudyMaterialUpload />} />
 
                         </Routes>
                     </div>

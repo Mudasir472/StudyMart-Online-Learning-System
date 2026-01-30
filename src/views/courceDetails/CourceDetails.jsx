@@ -6,22 +6,29 @@ import Description from "./Description";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CourseContext } from "../../context/CourseProvider";
+import StudyMaterial from "./StudyMaterial";
+import { LoginContext } from "../../context/Context";
 function CourceDetails() {
     const { courses, loading, error } = useContext(CourseContext);
     const [activeTab, setActiveTab] = useState("description");
     const [cource, setCourse] = useState([]);
     const { id } = useParams();
+
+    const { loginData, setLoginData } = useContext(LoginContext);
+    const [enrolled, setEnrolled] = useState(false);
     useEffect(() => {
         window.scrollTo(0, 0); // Scroll to top when component mounts or id changes
     }, [id]);
-
+    useEffect(() => {
+        if (loginData?.enrolledCourses) {
+            setEnrolled(loginData?.enrolledCourses?.includes(id));
+        }
+    }, [loginData, id]);
 
     useEffect(() => {
         const foundCourse = courses.find((item) => item._id === id);
         setCourse(foundCourse);
     }, [courses, id]);
-    // console.log(cource);
-
 
     return (<>
         <div className="courcedetails">
@@ -31,7 +38,6 @@ function CourceDetails() {
                     <img src={img} alt="" />
                 </div>
                 <div className="courceBody container mx-auto flex justify-between">
-
                     <div className="left flex flex-col gap-[1.5rem]">
                         <h2 className="mt-4 text-2xl font-medium">{cource?.title}</h2>
                         <div className="flex items-center justify-between">
@@ -47,31 +53,52 @@ function CourceDetails() {
                         </div>
                         <div>
                             {/* Header Section */}
-                            <div className="leftHead py-[5px] w-[19rem] flex items-center justify-between">
+                            <div className="leftHead py-[5px] w-[35rem] flex items-center gap-6">
                                 <p
                                     onClick={() => setActiveTab("description")}
-                                    className={`rounded-lg mr-[30px] text-lg font-semibold flex items-center justify-center h-[47px] w-[120px] cursor-pointer ${activeTab === "description"
+                                    className={`rounded-lg text-lg font-semibold flex items-center justify-center h-[47px] w-[120px] cursor-pointer ${activeTab === "description"
                                         ? "bg-[#F48C06] text-white"
                                         : "bg-[#0000001a] text-[#00000066]"
                                         }`}
                                 >
                                     Description
                                 </p>
+
                                 <p
                                     onClick={() => setActiveTab("review")}
-                                    className={`rounded-lg text-lg mr-[30px] font-semibold h-[47px] flex items-center justify-center w-[115px] cursor-pointer ${activeTab === "review"
+                                    className={`rounded-lg text-lg font-semibold h-[47px] flex items-center justify-center w-[115px] cursor-pointer ${activeTab === "review"
                                         ? "bg-[#F48C06] text-white"
                                         : "bg-[#0000001a] text-[#00000066]"
                                         }`}
                                 >
                                     Review
                                 </p>
+
+                                {enrolled && (
+                                    <p
+                                        onClick={() => setActiveTab("study")}
+                                        className={`rounded-lg text-lg font-semibold h-[47px] flex items-center justify-center w-[160px] cursor-pointer ${activeTab === "study"
+                                            ? "bg-[#F48C06] text-white"
+                                            : "bg-[#0000001a] text-[#00000066]"
+                                            }`}
+                                    >
+                                        Study Material
+                                    </p>
+                                )}
                             </div>
+
 
                             {/* Body Section */}
                             <div className="left-body">
-                                {activeTab === "description" ? <Description desc={cource?.description} /> : <Review id={id} />}
+                                {activeTab === "description" ? (
+                                    <Description desc={cource?.description} />
+                                ) : activeTab === "review" ? (
+                                    <Review id={id} />
+                                ) : enrolled ? (
+                                    <StudyMaterial courseId={id} />
+                                ) : null}
                             </div>
+
                         </div>
                     </div>
                     <div className="right w-[31%]">

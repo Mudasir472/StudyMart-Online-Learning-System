@@ -39,6 +39,16 @@ function Sidebar() {
                                     </div>
                                 </Link>
                             </li>
+                            <li
+                                className={`flex items-center justify-evenly ${location.pathname === "/dashboard/study-material" ? "border-l-[5px]" : ""
+                                    }`}
+                            >
+                                <Link to="/dashboard/study-material">
+                                    <div className="w-[66px] h-[62px] flex items-center bg-[#de9940] justify-center rounded-lg">
+                                        <i className="bi bi-list text-[39px] text-white"></i>
+                                    </div>
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                 </div>
