@@ -10,7 +10,6 @@ function StudyMaterial({ courseId }) {
     const [selectedPdf, setSelectedPdf] = useState(null);
 
 
-
     useEffect(() => {
         axios
             .get(`${URI}/api/material/${courseId}`, {
@@ -19,6 +18,9 @@ function StudyMaterial({ courseId }) {
             .then((res) => { setMaterials(res.data) })
             .catch((err) => { toast.error("Failed to load study materials"); });
     }, [token, courseId]);
+
+    
+
     return (
         <div className="p-6">
             <h2 className="text-2xl font-semibold mb-6">📚 Study Materials</h2>

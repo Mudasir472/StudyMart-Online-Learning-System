@@ -11,6 +11,8 @@ function TeacherStudyMaterialUpload() {
     const [courseId, setCourseId] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const [material, setMaterial] = useState([])
+
     const token = localStorage.getItem("token");
 
     // 🔄 Fetch teacher's courses
@@ -30,6 +32,16 @@ function TeacherStudyMaterialUpload() {
 
         fetchCourses();
     }, []);
+    useEffect(() => {
+        axios
+            .get(`${URI}/api/material/material/teacher`, {
+                headers: { Authorization: `Bearer ${token}` },
+            })
+            .then((res) => { setMaterial(res.data) })
+            .catch((err) => { console.log(err) || toast.error("Failed to load study materials"); });
+    }, [token]);
+
+    console.log(material);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -122,6 +134,59 @@ function TeacherStudyMaterialUpload() {
                     <p className="text-red-500">You have no courses to upload material for. Please create a course first.</p>
                 )
             }
+            <hr className="my-6" />
+
+            <h3 className="text-lg font-semibold mb-3">📚 Your Uploaded Materials</h3>
+
+            {material.length === 0 ? (
+                <p className="text-gray-500">No materials uploaded yet.</p>
+            ) : (
+                <div className="space-y-3">
+                    {material.map((m) => (
+                        <div
+                            key={m._id}
+                            className="border rounded-lg p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+                        >
+                            <div>
+                                <p className="font-medium">{m.title}</p>
+                                <p className="text-sm text-gray-500">
+                                    Type: {m.type?.toUpperCase()}
+                                </p>
+                                {m.course?.title && (
+                                    <p className="text-xs text-gray-400">
+                                        Course: {m.course.title}
+                                    </p>
+                                )}
+                            </div>
+
+                            <div className="flex gap-2">
+                                <a
+                                    href={m.fileUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-3 py-1 text-sm border rounded hover:bg-gray-100"
+                                >
+                                    View
+                                </a>
+
+                                <button
+                                    onClick={() => handleUpdate(m._id)}
+                                    className="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                                >
+                                    Update
+                                </button>
+
+                                <button
+                                    onClick={() => handleDelete(m._id)}
+                                    className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
 
 
         </div>
