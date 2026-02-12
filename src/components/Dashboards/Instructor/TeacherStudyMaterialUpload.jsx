@@ -10,6 +10,9 @@ function TeacherStudyMaterialUpload() {
     const [courses, setCourses] = useState([]);
     const [courseId, setCourseId] = useState("");
     const [loading, setLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedMaterialId, setSelectedMaterialId] = useState(null);
+
 
     const [material, setMaterial] = useState([])
 
@@ -41,7 +44,28 @@ function TeacherStudyMaterialUpload() {
             .catch((err) => { console.log(err) || toast.error("Failed to load study materials"); });
     }, [token]);
 
-    console.log(material);
+    const handleDelete = async () => {
+        console.log(selectedMaterialId);
+
+        // if (!window.confirm("Are you sure you want to delete this material?")) return;
+        try {
+            await axios.delete(`${URI}/api/material/${selectedMaterialId}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            toast.success("Material deleted successfully");
+
+            // Refresh list after delete
+            setMaterial((prev) => prev.filter((m) => m._id !== selectedMaterialId));
+            setIsModalOpen(false);
+            setSelectedMaterialId(null);
+            // OR call fetchMaterials() if you have that function
+            // await fetchMaterials();
+        } catch (err) {
+            console.error(err);
+            toast.error(err.response?.data?.message || "Failed to delete material");
+        }
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -79,7 +103,7 @@ function TeacherStudyMaterialUpload() {
     return (
         <div className="bg-white border rounded-xl p-6 shadow-sm">
             <h3 className="text-xl font-semibold mb-4">
-                📤 Upload Study Material
+                Upload Study Material
             </h3>
 
             {
@@ -136,7 +160,7 @@ function TeacherStudyMaterialUpload() {
             }
             <hr className="my-6" />
 
-            <h3 className="text-lg font-semibold mb-3">📚 Your Uploaded Materials</h3>
+            <h3 className="text-lg font-semibold mb-3">Your Uploaded Materials</h3>
 
             {material.length === 0 ? (
                 <p className="text-gray-500">No materials uploaded yet.</p>
@@ -170,14 +194,10 @@ function TeacherStudyMaterialUpload() {
                                 </a>
 
                                 <button
-                                    onClick={() => handleUpdate(m._id)}
-                                    className="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
-                                >
-                                    Update
-                                </button>
-
-                                <button
-                                    onClick={() => handleDelete(m._id)}
+                                    onClick={() => {
+                                        setSelectedMaterialId(m?._id);
+                                        setIsModalOpen(true);
+                                    }}
                                     className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
                                 >
                                     Delete
@@ -187,6 +207,34 @@ function TeacherStudyMaterialUpload() {
                     ))}
                 </div>
             )}
+
+            {isModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="relative bg-white rounded-lg p-6 w-80">
+                        <h3 className="font-bold text-lg mb-4">
+                            Are you sure you want to delete this material?
+                        </h3>
+
+                        <button
+                            className="w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold bg-red-600 text-white mb-2 hover:bg-red-700"
+                            onClick={handleDelete}
+                        >
+                            Permanently Delete
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                setIsModalOpen(false);
+                                setSelectedMaterialId(null);
+                            }}
+                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                        >
+                            ✕
+                        </button>
+                    </div>
+                </div>
+            )}
+
 
 
         </div>
