@@ -105,7 +105,6 @@ function TeacherStudyMaterialUpload() {
             <h3 className="text-xl font-semibold mb-4">
                 Upload Study Material
             </h3>
-
             {
                 courses.length > 0 ? (
                     <form onSubmit={handleSubmit} className="space-y-4">

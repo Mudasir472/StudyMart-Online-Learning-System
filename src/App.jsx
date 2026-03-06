@@ -19,6 +19,8 @@ import About from "./views/pages/About";
 import Blog from "./views/pages/Blog";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AdminRoute from "./AdminRoute";
+import Chat from "./views/Chat";
+import AITutorPopup from "./components/AITutorPopup";
 // import ContactPage from "./views/pages/ContactPage";
 
 
@@ -71,6 +73,7 @@ function AppWrapper() {
             </AdminRoute>} />
           {/* <Route path="*" element={< />} /> */}
         </Routes>
+        <AITutorPopup />
         <div style={{ backgroundColor: '#252641', color: 'white' }} className="foot">
           {/* <Footer /> */}
           {!isDashboardRoute && <Footer />}
