@@ -4,8 +4,12 @@ import { URI } from "../../env";
 export default function Chat() {
     const [question, setQuestion] = useState("");
     const [messages, setMessages] = useState([]);
+    const token = localStorage.getItem('token');
+
+    console.log(messages);
 
     const askAI = async () => {
+
         if (!question.trim()) return;
 
         // show user message
@@ -16,12 +20,20 @@ export default function Chat() {
         setMessages(newMessages);
 
         try {
+            console.log(token);
+
             const res = await axios.post(
                 `${URI}/api/ai/ask`,
                 {
                     question,
                     studentId: "67b30c2a82337da8378f066c"
-                }
+                }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                withCredentials: true,
+            }
             );
 
             setMessages([
@@ -31,6 +43,8 @@ export default function Chat() {
 
             setQuestion("");
         } catch (err) {
+            console.log(token);
+
             console.error(err);
         }
     };
@@ -77,7 +91,7 @@ export default function Chat() {
             <input
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
-                placeholder="Ask your doubt..."
+                placeholder="Ask yours doubt..."
                 style={{ width: "75%", padding: "10px" }}
             />
 
