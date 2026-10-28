@@ -29,20 +29,25 @@ function CourceDetails() {
         const foundCourse = courses.find((item) => item._id === id);
         setCourse(foundCourse);
     }, [courses, id]);
-
+    console.log("cource", cource);
+    console.log("courses", courses);
     return (<>
         <div className="courcedetails">
             <div className="detailsMain">
 
-                <div className="detailImg">
-                    <img src={img} alt="" />
+                <div className="w-full h-[70vh] min-h-[400px] max-h-[800px] overflow-hidden bg-gray-900">
+                    <img
+                        src={img}
+                        alt="Course banner"
+                        className="block w-full h-full object-cover"
+                    />
                 </div>
                 <div className="courceBody container mx-auto flex justify-between">
                     <div className="left flex flex-col gap-[1.5rem]">
                         <h2 className="mt-4 text-2xl font-medium">{cource?.title}</h2>
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                                <img className="h-[46px] me-3 rounded-full" src={cource?.instructorId?.profileImage?.url} alt="" />
+                                <img className="h-[46px] me-3 rounded-full" src={cource?.instructorId?.image?.url} alt="" />
                                 <p className="me-4">{cource?.instructorId?.firstname} </p>
                             </div>
                             <p className="text-[#F48C06]">{cource?.enrolled?.length === 0 ? "0" : Array.isArray(cource?.enrolled) && cource?.enrolled?.length} Students Enrolled</p>
